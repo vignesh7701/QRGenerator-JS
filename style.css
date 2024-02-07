@@ -1,0 +1,14 @@
+#qrcode {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+  margin-top: 1em;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#qrcode svg {
+  min-width: 100px;
+  min-height: 100px;
+}

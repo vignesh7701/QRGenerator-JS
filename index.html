@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>QR Generator</title>
     <link rel="shortcut icon" href="favicon.png" type="image/png" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
+
   </head>
 
   <body class="bg-gray-100">
@@ -32,14 +33,17 @@
             <label for="size" class="block text-gray-700 font-bold mb-2"
               >Size</label
             >
-            <input
-              type="number"
+            <select
               name="size"
               id="size"
               class="w-full p-2 border border-gray-300 rounded"
-            />
+            >
+              <option value="100">Small (100px x 100px)</option>
+              <option value="200">Medium (200px x 200px)</option>
+              <option value="300">Large (300px x 300px)</option>
+            </select>
           </div>
-          <div class="mb-4">
+          <div class="mb-4 flex justify-evenly">
             <label for="color" class="block text-gray-700 font-bold mb-2"
               >Color</label
             >
@@ -47,10 +51,9 @@
               type="color"
               name="color"
               id="color"
-              class="w-full p-2 border border-gray-300 rounded"
+              class="w-6 border border-gray-300"
             />
-          </div>
-          <div class="mb-4">
+
             <label for="background" class="block text-gray-700 font-bold mb-2"
               >Background</label
             >
@@ -58,11 +61,11 @@
               type="color"
               name="background"
               id="background"
-              class="w-full p-2 border border-gray-300 rounded"
+              class="w-6 border border-gray-300"
             />
           </div>
-          <div class="mb-4">
-            <button type="submit" class="bg-blue-500 text-white p-2 rounded">
+          <div class="mb-4 flex justify-center items-center">
+            <button onclick="generateQR()" class="bg-blue-500 text-white p-2 rounded">
               Generate
             </button>
           </div>
@@ -70,9 +73,17 @@
       </div>
     </div>
 
-    <div id="qrcode"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
-    <script src="script.js"></script>
+    <div id="qrcode" class="m-auto max-w-md">
+    <img src="" alt="qrImage" id="qrImage"></div>
+    <script>
+      let imgBox = document.getElementById("qrcode");
+let qrImage = document.getElementById("qrImage");
+let qrText = document.getElementById("url");
+
+
+function generateQR() {
+  qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?data=${qrText.value}&size=100x100`;
+}
+    </script>
   </body>
 </html>

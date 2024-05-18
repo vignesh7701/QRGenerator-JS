@@ -1,23 +1,38 @@
 const form = document.querySelector('#form');
 const output = document.querySelector('#qrcode');
-const spinner = document.querySelector('#spinner');
+const spinner = document.querySelector('#loading');
 
+function generateQRCode(e) {
+  e.preventDefault();
+  console.log('Generating QR Code...');
+  const url = document.querySelector('#url');
+  const size = document.querySelector('#size');
+  const color = document.querySelector('#color');
+  const background = document.querySelector('#background');
+  console.log(url.value, size.value, color.value, background.value);
 
-document.addEventListener(
-  "submit",
-    function (e) {
-      e.preventDefault();
-    const url = document.querySelector("#url").value;
-    const size = document.querySelector("#size").value;
-    const color = document.querySelector("#color").value;
-    const background = document.querySelector("#background").value;
+  if (url.value === '') {
+    alert('Please enter a URL');
+  }
+  else {
+    
+    spinner.style.display = 'flex';
+    
+    setTimeout(() => { 
+      spinner.style.display = 'none';
+      output.innerHTML = "";
+      const qrcode = new QRCode('qrcode', {
+        text: url.value,
+        width: size.value,
+        height: size.value,
+        colorDark: color.value,
+        colorLight: background.value,
+        correctLevel: QRCode.CorrectLevel.H
+      });
+      }, 2000)
+   
+  }
 
-    if (url === "") {
-      alert("URL is required");
-      return;
-    } else {
-      spinner.style.display = "flex";
-    }
-  },
-  true
-);
+}
+
+form.addEventListener('submit', generateQRCode);

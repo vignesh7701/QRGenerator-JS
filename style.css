@@ -1,9 +1,10 @@
 #qrcode {
   display: flex;
+  position: relative;
+  background: #e4f2f5;
   justify-content: center;
   padding: 1em;
   margin-top: 1em;
-  background-color: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -15,16 +16,18 @@
 
 #loading{
   display: none;
+  position: absolute;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 
 }
 
 #spinner{
   width: 30px;
   height: 30px;
-  border: 5px solid #dddddd;
+  border: 5px solid #050303;
   border-radius: 50%;
   border-top-color: black;
   animation: spin 1s linear infinite;

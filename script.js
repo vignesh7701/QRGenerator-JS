@@ -1,6 +1,7 @@
 const form = document.querySelector('#form');
 const output = document.querySelector('#qrcode');
 const spinner = document.querySelector('#loading');
+const qrcodeElement = document.querySelector('#output');
 
 function generateQRCode(e) {
   e.preventDefault();
@@ -20,8 +21,8 @@ function generateQRCode(e) {
     
     setTimeout(() => { 
       spinner.style.display = 'none';
-      output.innerHTML = "";
-      const qrcode = new QRCode('qrcode', {
+      qrcodeElement.innerHTML = "";
+      const qrcode = new QRCode('output', {
         text: url.value,
         width: size.value,
         height: size.value,
